@@ -1,6 +1,6 @@
 
 
-![Flow_APP_GCP](https://github.com/nshah14/nav-pg-sb-gcp/blob/master/Flow_APP_GCP.png)
+![Flow_APP_GCP](https://github.com/nshah14/gcp-pg-app/blob/master/Flow_APP_GCP.png)
 
 
 #Please add DB creds in application.properties and run.
