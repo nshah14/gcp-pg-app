@@ -1,5 +1,18 @@
 
 
+To Setup gcp infrasturture...
+
+go to teraform/project directory and run
+terraform init ( terraform .12.19 is been used)
+terraform plan -out out.plan
+terraform apply 
+
+It will create GCP project/SA with service role and PG database with one user and password.
+
+Use that in  spring app (application.properties) and with SA run command below to to mvn springboot deployment on App Engine. 
+
+
+
 ![Flow_APP_GCP](https://github.com/nshah14/gcp-pg-app/blob/master/Flow_APP_GCP.png)
 
 
