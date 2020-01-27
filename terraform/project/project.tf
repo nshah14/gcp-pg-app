@@ -29,6 +29,15 @@ resource "google_service_account" "sa-admin" {
   project = var.name
 }
 
+resource "google_service_account_key" "sa-editor" {
+  service_account_id = google_service_account.sa-editor.account_id
+  public_key_type    = "TYPE_X509_PEM_FILE"
+}
+
+
+output "service_account_key" {
+  value = google_service_account_key.sa-editor.private_key
+}
 
 resource "google_project_iam_member" "appengine" {
   project = var.project_id

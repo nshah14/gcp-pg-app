@@ -94,7 +94,7 @@
 				<version>1.8.0</version>
 				<configuration>
 					<to>
-						<image>gcr.io/nav-rev-task/rev-pg-app</image>
+						<image>gcr.io/sen-tf-k8s-dev/rev-pg-app</image>
 					</to>
 				</configuration>
 			</plugin>
