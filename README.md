@@ -16,40 +16,41 @@ Use that in  spring app (application.properties) and with SA run command below t
 ![Flow_APP_GCP](https://github.com/nshah14/gcp-pg-app/blob/master/Flow_APP_GCP.png)
 
 
-#Please add DB creds in application.properties and run.
+# Please add DB creds in application.properties and run.
 mvn package appengine:deploy
 
-#To insert/update db please use 
+# To insert/update db please use 
 
 curl -X PUT   https://rev-pg-app-dot-nav-rev-task.appspot.com/hello/nvwed   -H 'cache-control: no-cache'   -H 'content-type: application/json'   -d '{  "dateOfBirth":"2020-01-18" }'
 
-#To Retrieved Date of Birth use.
+# To Retrieved Date of Birth use.
 Example URL : https://rev-pg-app-dot-nav-rev-task.appspot.com/hello/nvwed
 
 
 
-#To Run local :
+# To Run local :
 ./mvnw spring-boot:run
 
 
-#To Clean and repackage :
+# To Clean and repackage :
 mvn clean package spring-boot:repackage
 
-#To Build Docker image and upload it to google cloud
-./mvnw com.google.cloud.tools:jib-maven-plugin:build
+# To Build Docker image and upload it to google cloud
+      ./mvnw com.google.cloud.tools:jib-maven-plugin:build
 
-#To Run Docker image in google cloud console.
+# To Run Docker image in google cloud console.
 docker run -p 8080:8080 -t gcr.io/project-id/rev-pg-app
 
-#To Deploy image in google cloud app engine.
+# To Deploy image in google cloud app engine.
 gcloud app deploy --image-url gcr.io/project-id/rev-pg-app
 
 ##########################
-#BUILD IMAGE  AND DEPLOY #
+# BUILD IMAGE  AND DEPLOY #
 ##########################
-  ./mvnw com.google.cloud.tools:jib-maven-plugin:build
+  
+    ./mvnw com.google.cloud.tools:jib-maven-plugin:build
         or 
-  mvn compile jib:build
+     mvn compile jib:build
 
 Image will be uploaded to GCR repo.
 Follow instruction from repo to deploy service in kuberenetes cluster(It also has Postgres creation script in gcp if)
