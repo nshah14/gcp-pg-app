@@ -43,3 +43,14 @@ docker run -p 8080:8080 -t gcr.io/project-id/rev-pg-app
 
 #To Deploy image in google cloud app engine.
 gcloud app deploy --image-url gcr.io/project-id/rev-pg-app
+
+##########################
+#BUILD IMAGE  AND DEPLOY #
+##########################
+  ./mvnw com.google.cloud.tools:jib-maven-plugin:build
+        or 
+  mvn compile jib:build
+
+Image will be uploaded to GCR repo.
+Follow instruction from repo to deploy service in kuberenetes cluster(It also has Postgres creation script in gcp if)
+https://github.com/nshah14/sen-gcp-k8s-tf
