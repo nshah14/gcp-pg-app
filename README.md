@@ -1,6 +1,6 @@
 
 
-To Setup gcp infrasturture...
+# To Setup gcp infrasturture...
 
 go to teraform/project directory and run
 terraform init ( terraform .12.19 is been used)
