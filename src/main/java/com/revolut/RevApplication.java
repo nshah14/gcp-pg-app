@@ -23,38 +23,37 @@ import com.revolut.impl.PersonService;
 @SpringBootApplication
 @RestController
 public class RevApplication {
-  Logger LOGGER = LoggerFactory.getLogger(RevApplication.class);
+	Logger LOGGER = LoggerFactory.getLogger(RevApplication.class);
 
-  private final JdbcTemplate jdbcTemplate;
+	private final JdbcTemplate jdbcTemplate;
 
 	public RevApplication(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-		
 
 	public static void main(String[] args) {
-		SpringApplication.run(RevApplication.class, args);		
+		SpringApplication.run(RevApplication.class, args);
 	}
 
-
-  /**
+	/**
 	 * @param name
 	 * @param person
 	 * @return
 	 */
 	@PutMapping("/hello/{id}")
-	public String insertAndUpdateDateOfBirth(@PathVariable(value = "id") String name, @Valid @RequestBody Person  person) {
-		System.out.println("bodyy  "+person.getDateOfBirth());
-		
-		LOGGER.info("IN:: insertAndUpdateDateOfBirth() : for name : " + name+" for date of birth :"+person.getDateOfBirth());
+	public String insertAndUpdateDateOfBirth(@PathVariable(value = "id") String name,
+			@Valid @RequestBody Person person) {
+		System.out.println("bodyy  " + person.getDateOfBirth());
+
+		LOGGER.info("IN:: insertAndUpdateDateOfBirth() : for name : " + name + " for date of birth :"
+				+ person.getDateOfBirth());
 		PersonService pService = new PersonImpl(jdbcTemplate);
 		person.setFirst_name(name);
-        
-        RevUtils vUtils = new RevUtils();
+
+		RevUtils vUtils = new RevUtils();
 		String vmsg = vUtils.validate(person);
 		int count = 0;
-		if(vmsg != "None")
-		{
+		if (vmsg != "None") {
 			return vmsg;
 		}
 		try {
@@ -62,11 +61,11 @@ public class RevApplication {
 			if (pService.getCount(name) == 0) {
 
 				count = pService.insertDateOfBirth(person);
-				
+
 			} else {
-				
+
 				count = pService.updateDateOfBirth(person);
-			
+
 			}
 
 		} catch (SQLException e) {
@@ -75,8 +74,7 @@ public class RevApplication {
 			LOGGER.error("ERROR :: insertAndUpdateDateOfBirth() : for name : " + e.getMessage());
 		}
 
-		if(count == 0)
-		{
+		if (count == 0) {
 			return HttpStatus.NOT_ACCEPTABLE.toString();
 		}
 		return HttpStatus.NO_CONTENT.toString();
@@ -90,22 +88,20 @@ public class RevApplication {
 	private String getDateOfBirth(@PathVariable(value = "id") String name) throws SQLException {
 
 		LOGGER.info("IN:: getDays()");
-		
-	
-		
+
 		String birthday = "";
 		PersonService pService = new PersonImpl(jdbcTemplate);
 		try {
 			birthday = pService.getBDay(name);
 		} catch (EmptyResultDataAccessException e) {
-			
-			LOGGER.error("ERROR: getDateOfBirth :: error msg : "+e.getMessage() );
+
+			LOGGER.error("ERROR: getDateOfBirth :: error msg : " + e.getMessage());
 			return "INVALID REQUEST :: User doesnt exist";
-		} catch ( SQLException e){
-			LOGGER.error("ERROR: getDateOfBirth :: error msg : "+e.getMessage() );
+		} catch (SQLException e) {
+			LOGGER.error("ERROR: getDateOfBirth :: error msg : " + e.getMessage());
 			throw new SQLException(e.getMessage());
 		}
-		
+
 		RevUtils vUtils = new RevUtils();
 		if (vUtils.isString(name))
 			return vUtils.getBirthDayMsg(birthday, name);
