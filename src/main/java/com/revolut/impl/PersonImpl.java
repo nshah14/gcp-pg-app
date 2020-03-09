@@ -40,17 +40,7 @@ public class PersonImpl implements PersonService{
 	 {
 		LOGGER.info("IN:: insertDateOfBirth() : for name : "+person.getFirst_name());
 		int update =  jdbcTemplate.update(INSERT_PERSON_SQL, new Object[]{person.getFirst_name(), person.getDateOfBirth()});
-//		int  update = 0;
-//		try {
-//			 update =  jdbcTemplate.update(INSERT_PERSON_SQL, new Object[]{person.getFirst_name(), new SimpleDateFormat("yyyy-MM-dd").parse(person.getDateOfBirth())});
-//		} catch (DataAccessException e) {
-//		    LOGGER.error(e.getMessage());
-//			
-//		} catch (ParseException e) {
-//			
-//			LOGGER.error(e.getMessage());
-//			
-//		}
+
 		return update;
 		
 
@@ -64,16 +54,7 @@ public class PersonImpl implements PersonService{
 
 	
 		int  insert =  jdbcTemplate.update(UPDATE_PERSON_SQL, new Object[] {person.getDateOfBirth(), person.getFirst_name() });
-//		try {
-//			 insert =  jdbcTemplate.update(UPDATE_PERSON_SQL, new Object[] {new SimpleDateFormat("yyyy-MM-dd").parse(person.getDateOfBirth()), person.getFirst_name() });
-//		} catch (DataAccessException e) {
-//		    LOGGER.error(e.getMessage());
-//			
-//		} catch (ParseException e) {
-//			
-//			LOGGER.error(e.getMessage());
-//			
-//		}
+
 		return insert;
 		
 

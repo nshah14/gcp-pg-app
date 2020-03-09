@@ -58,25 +58,7 @@ public class RevUtils {
 		    System.out.println("year "+Integer.parseInt(bDate[0])+"  "+today.getYear() + "status "+ (Integer.parseInt(bDate[0]) > today.getYear() ));
 		    System.out.println("month "+Integer.parseInt(bDate[1])+" "+today.getMonthValue()+ "status "+ ( Integer.parseInt(bDate[1]) > today.getMonthValue()));
 		    System.out.println("date "+Integer.parseInt(bDate[2])+" "+today.getDayOfMonth()+ "status " + (Integer.parseInt(bDate[2]) > today.getDayOfMonth()));
-//		    if (today.getYear() == Integer.parseInt(bDate[0]) ) 		
-//		    {
-//		    	if(Integer.parseInt(bDate[1]) > today.getMonthValue()) {
-//		    		if(Integer.parseInt(bDate[2]) > today.getDayOfMonth())
-//					{
-//						return true;
-//					}
-//		    		else {
-//		    			return false;
-//		    		}
-//		    	}
-//		    	else {
-//			    		return false;
-//		    	}
-//		    }
-//		    else if (today.getYear() < Integer.parseInt(bDate[0]) ){
-//		    	
-//		    	return false;
-//		    }
+
 		    
 		    if (today.getYear() < Integer.parseInt(bDate[0]) ) 		
 		    {

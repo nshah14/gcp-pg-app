@@ -91,9 +91,7 @@ public class RevApplication {
 
 		LOGGER.info("IN:: getDays()");
 		
-		if(name == "naved"){
-				return "Happy birthday!!";
-		}
+	
 		
 		String birthday = "";
 		PersonService pService = new PersonImpl(jdbcTemplate);
